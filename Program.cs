@@ -13,7 +13,7 @@ else
     Console.WriteLine($"max = {y}");
 }
 */
-
+/*
 Console.Write("num1 = ");
 int x =  int.Parse(Console.ReadLine());
 Console.Write("num2 = ");
@@ -42,6 +42,7 @@ else                      {
     int xy = y;
 }
 */
+/*
 int xy = x > y ? x : y ;
 
 if (xy > z) 
@@ -53,13 +54,18 @@ else
 {
     Console.WriteLine(z);
 }
-
-
-/*
-Console.Write("n = ");
-int n = int.Parse(Console.ReadLine());
-var list = numbers.ToList();
-int nRange = list.GetRange(0, n);
-Console.WriteLine(nRange);
 */
+
+
+
+Console.Write("n = ");
+int n =  int.Parse(Console.ReadLine());
+if (n % 2 == 0)
+{
+    Console.WriteLine("да");
+}
+else 
+{
+        Console.WriteLine("нет");
+}
 
