@@ -15,7 +15,7 @@ else
     Console.WriteLine("not a 3 digit");  
 }
 */
-
+/*
 Console.Write("write at least 3 digit = ");
 string n =  Console.ReadLine();
 int x = Int32.Parse(n);
@@ -30,4 +30,16 @@ if (z >= 1)
 else 
 {
     Console.WriteLine("less than 3 digit");  
+}
+*/
+
+Console.Write("what day of the week = ");
+int n =  int.Parse(Console.ReadLine());
+if (n == 6 ^ n == 7)
+{
+    Console.WriteLine("yes");
+}
+else 
+{
+    Console.WriteLine("no");
 }
