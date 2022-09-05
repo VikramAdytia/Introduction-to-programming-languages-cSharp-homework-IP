@@ -70,11 +70,18 @@ else
 }
 */
 
-Console.Write("n = ");
-int n =  int.Parse(Console.ReadLine());
-int counter = 1;
-while (counter <= n/2) 
+Console.Write("write a 3 digit = ");
+string n =  Console.ReadLine();
+int x = Int32.Parse(n);
+char [] destination = { 'n', 'r', 'g' };
+int y = 100;
+int z = x/y;
+if (z >= 1 && z < 10)
 {
-    Console.WriteLine(counter * 2);
-    counter++;
+    n.CopyTo ( 1, destination, 1, 1 );
+    Console.WriteLine(destination[1]);
+}
+else 
+{
+    Console.WriteLine("not a 3 digit");  
 }
