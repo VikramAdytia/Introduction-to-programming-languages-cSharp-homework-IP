@@ -1,84 +1,105 @@
-﻿    Double x1, x2, y1, y2, z1, z2, distance;
-    Console.WriteLine("1. Определение паллиндрома.");
-    Console.WriteLine("2. Расстояние между двумя точками в пространстве.");
-    Console.WriteLine("3. Вывод кубов числа n");
-    Console.WriteLine("Выберите нужный пункт ( 1 /  2 / 3 )(без кавычек,скобочек,четрочек,точечек, только одна цифра):");
+﻿Console.WriteLine(" 1 Возводит число А в степеь B : ");
+Console.WriteLine(" 2 Выдаёт сумму цифр в числе : ");
+Console.WriteLine(" 3 Запрашивает елементы - выводит массив : ");
+Console.Write(" select: ");
 
-    char selection = Convert.ToChar(Console.ReadLine());
+string selection = Console.ReadLine();
 
-    switch (selection)
-    {
-        case '1':
-            // Определение паллиндрома
-            string GetIfPallyndrome(string myString) 
-            {
-            int length = myString.Length;
-            for (int i = 0; i < length / 2; i++)
-            {
-            if (myString[i] != myString[length - i - 1])
-                            return "нет";
+switch (selection){
+
+    case "1":
+
+        int GetIntPow(int inputNumA,int inputNumB){
+
+            int inputNumAPow = inputNumA;
+
+            /*if (inputNumB < 0){
+                for ( int j = -1 ; j > inputNumB ; j--){
+                inputNumAPow /= inputNumA;
+                }
+            }
+            // if use double it works
+            */
+
+            if (inputNumA < 0){
+                int inputNumAAbs = Math.Abs(inputNumA);
+                    for ( int j = 1 ; j < inputNumB ; j++){
+                        inputNumAPow *= inputNumAAbs;
                     }
-                    return "да";
+                //inputNumAPow *= -1;
+                // it just works
             }
-            Console.Write("pallyndrome check box: ");
-            string myStringInput = Console.ReadLine();
-            string myString = myStringInput.TrimStart('-');
-            //а отрицательное число может быть палиндромом?
 
-            string answer = GetIfPallyndrome(myString) ;
-            Console.WriteLine(answer);
-            ///Console.ReadKey();
-
-            break;
-
-        case '2':
-
-            //Расстояние между двумя точками в пространстве.
-
-            Console.Write("Введите координаты x1: ");
-            x1 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Введите координаты x2: ");
-            y1 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Введите координаты y1: ");
-            z1 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Введите координаты y2: ");
-            x2 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Введите координаты z1: ");
-            y2 = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Введите координаты z2: ");
-            z2 = Convert.ToDouble(Console.ReadLine());
-
-            distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2) + Math.Pow(z2 - z1, 2));
-
-            Console.WriteLine(Math.Round(distance, 2 ));
-            ///Console.ReadKey();
-
-            break;
-
-        default:
-
-            Console.WriteLine("Вы ввели неверный символ");
-            ///Console.ReadKey();
-
-            break;
-
-        case '3':
-
-            //Вывод кубов числа n
-
-            Console.Write("Введите n: ");
-            int n = int.Parse(Console.ReadLine());
-            ///int nAbs = Math.Abs(n);
-            //надо ли выводить что то при нуле?
-
-            for (int i = 1 ; i <= Math.Abs(n) ; i++){
-            Console.WriteLine(Math.Pow(i, 3));
+            else {
+                for ( int j = 1 ; j < inputNumB ; j++){
+                    inputNumAPow *= inputNumA;
+                }
             }
-            break;
+
+            return inputNumAPow;
 
         }
+
+        Console.Write("input a number a :");
+        int inputA = int.Parse(Console.ReadLine());
+
+        Console.Write("input a number b :");
+        int inputB = int.Parse(Console.ReadLine());
+
+        Console.WriteLine(GetIntPow(inputA ,inputB));
+
+        break;
+
+    case "2":
+
+        int GetIntSum(int inputNum){
+
+        int sum = 0;
+        while (inputNum != 0) {
+            sum += inputNum % 10;
+            inputNum /= 10;
+        }
+
+        return sum;
+
+        }
+
+        Console.Write("input a number :");
+        int input = int.Parse(Console.ReadLine());
+
+        Console.WriteLine(GetIntSum(input));
+
+        break;
+
+    case "3":
+
+        int[] GetArray(int arrayLenght){
+
+            // tried object, didnt work ,i guess i know why
+
+            int[] answer = new int[arrayLenght];
+
+            for(int i = 0;i< answer.Length ;i++){
+                Console.Write("input numerical element: ");
+                answer[i]= int.Parse(Console.ReadLine());
+            }
+
+            return answer;
+        }
+
+        void PrintArray(int[] aray){
+
+            for(int i = 0;i< aray.Length ;i++){
+                Console.Write($"{aray[i]} ");
+            } 
+        }
+
+        Console.Write("input an array length :");
+        int inputArrayLength = int.Parse(Console.ReadLine());
+
+        int[] aray = GetArray(inputArrayLength);
+
+        PrintArray(aray);
+
+        break;
+}
