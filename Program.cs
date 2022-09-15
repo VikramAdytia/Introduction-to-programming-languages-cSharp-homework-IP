@@ -1,105 +1,96 @@
-﻿Console.WriteLine(" 1 Возводит число А в степеь B : ");
-Console.WriteLine(" 2 Выдаёт сумму цифр в числе : ");
-Console.WriteLine(" 3 Запрашивает елементы - выводит массив : ");
-Console.Write(" select: ");
+﻿void PrintDoubleArray (double [] array)
+{
 
-string selection = Console.ReadLine();
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write ($"{array [i]} ");
+    }
 
-switch (selection){
+    Console.WriteLine(" ");
+    return;
 
-    case "1":
-
-        int GetIntPow(int inputNumA,int inputNumB){
-
-            int inputNumAPow = inputNumA;
-
-            /*if (inputNumB < 0){
-                for ( int j = -1 ; j > inputNumB ; j--){
-                inputNumAPow /= inputNumA;
-                }
-            }
-            // if use double it works
-            */
-
-            if (inputNumA < 0){
-                int inputNumAAbs = Math.Abs(inputNumA);
-                    for ( int j = 1 ; j < inputNumB ; j++){
-                        inputNumAPow *= inputNumAAbs;
-                    }
-                //inputNumAPow *= -1;
-                // it just works
-            }
-
-            else {
-                for ( int j = 1 ; j < inputNumB ; j++){
-                    inputNumAPow *= inputNumA;
-                }
-            }
-
-            return inputNumAPow;
-
-        }
-
-        Console.Write("input a number a :");
-        int inputA = int.Parse(Console.ReadLine());
-
-        Console.Write("input a number b :");
-        int inputB = int.Parse(Console.ReadLine());
-
-        Console.WriteLine(GetIntPow(inputA ,inputB));
-
-        break;
-
-    case "2":
-
-        int GetIntSum(int inputNum){
-
-        int sum = 0;
-        while (inputNum != 0) {
-            sum += inputNum % 10;
-            inputNum /= 10;
-        }
-
-        return sum;
-
-        }
-
-        Console.Write("input a number :");
-        int input = int.Parse(Console.ReadLine());
-
-        Console.WriteLine(GetIntSum(input));
-
-        break;
-
-    case "3":
-
-        int[] GetArray(int arrayLenght){
-
-            // tried object, didnt work ,i guess i know why
-
-            int[] answer = new int[arrayLenght];
-
-            for(int i = 0;i< answer.Length ;i++){
-                Console.Write("input numerical element: ");
-                answer[i]= int.Parse(Console.ReadLine());
-            }
-
-            return answer;
-        }
-
-        void PrintArray(int[] aray){
-
-            for(int i = 0;i< aray.Length ;i++){
-                Console.Write($"{aray[i]} ");
-            } 
-        }
-
-        Console.Write("input an array length :");
-        int inputArrayLength = int.Parse(Console.ReadLine());
-
-        int[] aray = GetArray(inputArrayLength);
-
-        PrintArray(aray);
-
-        break;
 }
+
+double[] GetDiffAllFirstLastInArray (double [] array)
+{
+    double [] diffAllFirstLastInArray = new double[array.Length/2];
+
+    for (int i = 0; i < diffAllFirstLastInArray.Length ; i++ )
+    {
+        int j = i+1;
+        double sum = array[i] * array[^j++];
+        diffAllFirstLastInArray[i] = sum;
+    }
+
+    if (array.Length%2 != 0)
+    {
+        Array.Resize(ref diffAllFirstLastInArray, diffAllFirstLastInArray.Length + 1);
+        diffAllFirstLastInArray[^1] = array[array.Length/2];
+    }
+
+    return diffAllFirstLastInArray;
+
+}
+
+double[] GetRandomDoubleArray(int size, int startValue, int endValue)
+{
+    var array = new double[size];
+
+    for (int i = 0 ; i < array.Length ; i++)
+    {
+        //array[i] = new Random().NextDouble()*1000;
+        //Технически они вещественны,просто рандомный генератор выдаёт их целыми,как в описании заданиия
+        array[i] = new Random().Next(startValue,endValue+1);
+    }
+    return array;
+}
+ 
+double GetDiffMinMaxInDoubleArray(double[] array)
+{
+    var result = array.Max() - array.Min();
+    Console.WriteLine("GetDiffMinMaxInDoubleArray");
+    return result;
+}
+
+int GetEven3DigitsInArray (double[] doubleArray)
+{
+    int counter = 0;
+    for ( int i = 0 ; i < doubleArray.Length ; i++ )
+    {
+        if (doubleArray[i]%2 == 0 && doubleArray[i]/100 > 1 && doubleArray[i]/100 < 10 && doubleArray[i] >= 0 )
+        // тут рудиментарная проверка на то что числа трёхзначные и положительные
+        {
+            counter++;
+        }
+    }
+    Console.WriteLine("GetEven3DigitsInArray");
+    return counter;
+}
+
+double GetUnevenIndexSumInArray (double[] doubleArray)
+{
+    double sum = 0;
+    for ( int i = 0 ; i < doubleArray.Length ; i++ )
+    {
+        if ( i % 2 == 0 )
+        {
+            sum += doubleArray[i];
+        }
+    }
+    Console.WriteLine("GetUnevenIndexSumInArray");
+    return sum;
+}
+
+double[] doubleArray = GetRandomDoubleArray(5,100,999);
+
+PrintDoubleArray(doubleArray);
+
+Console.WriteLine(GetDiffMinMaxInDoubleArray(doubleArray));
+
+Console.WriteLine(GetEven3DigitsInArray(doubleArray));
+
+Console.WriteLine(GetUnevenIndexSumInArray(doubleArray));
+
+var diffAllFirstLastInArray= GetDiffAllFirstLastInArray(doubleArray);
+Console.WriteLine("diffAllFirstLastInArray");
+PrintDoubleArray(diffAllFirstLastInArray);
