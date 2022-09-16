@@ -1,4 +1,5 @@
-﻿void PrintDoubleArray (double [] array)
+﻿/*
+void PrintDoubleArray (double [] array)
 {
 
     for (int i = 0; i < array.Length; i++)
@@ -80,10 +81,10 @@ double GetUnevenIndexSumInArray (double[] doubleArray)
     Console.WriteLine("GetUnevenIndexSumInArray");
     return sum;
 }
-
+*/
+/*
 double[] doubleArray = GetRandomDoubleArray(5,100,999);
-
-PrintDoubleArray(doubleArray);
+oubleArray(doubleArray);
 
 Console.WriteLine(GetDiffMinMaxInDoubleArray(doubleArray));
 
@@ -94,3 +95,35 @@ Console.WriteLine(GetUnevenIndexSumInArray(doubleArray));
 var diffAllFirstLastInArray= GetDiffAllFirstLastInArray(doubleArray);
 Console.WriteLine("diffAllFirstLastInArray");
 PrintDoubleArray(diffAllFirstLastInArray);
+*/
+
+int GetMoreThanZeroInInput (int m)
+{
+    //System.Console.WriteLine("колво чисел = ");
+    //int m = int.Parse(Console.ReadLine());
+    int[] mmm = new int[m];
+    for (int i = 0 ; i < m ; i++)
+    {
+        System.Console.WriteLine("Введите число : ");
+        mmm[i] = int.Parse(Console.ReadLine());
+    }
+    int counter = 0;
+    for (int i = 0 ; i < m ; i++)
+    {
+        if (mmm[i] > 0 )    {
+            counter++;
+        }
+    }
+return counter;
+}
+
+//System.Console.WriteLine(GetMoreThanZeroInInput(5));
+
+double GetIntersecTwoLines (double b1, double k1,double b2, double k2 )
+{
+double x = (b2 - b1)/(k1 - k2);
+double y = k1*(b2-b1)/(k1-k2)+b1;
+System.Console.WriteLine($"y= {y}");
+return x;
+}
+System.Console.WriteLine($"x = {GetIntersecTwoLines(2,5,4,9)}");
