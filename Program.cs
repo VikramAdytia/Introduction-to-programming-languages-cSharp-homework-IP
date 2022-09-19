@@ -1,129 +1,116 @@
-﻿/*
-void PrintDoubleArray (double [] array)
-{
+﻿using System.Linq;
 
-    for (int i = 0; i < array.Length; i++)
+System.Console.WriteLine("1. Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.");
+System.Console.WriteLine("2. Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2;");
+System.Console.WriteLine("3. Задача 44*: Не используя рекурсию, выведите первые N(сейчас 15) чисел Фибоначчи.");
+
+string choise = System.Console.ReadLine();
+
+switch (choise)
+{
+case ("1"):
+
+    void GetMoreThanZeroInInput ()
     {
-        Console.Write ($"{array [i]} ");
+
+        Console.Write("Введите элементы(через пробел): ");
+        int[] arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+        int count = arr.Count(x => x > 0);
+
+        Console.WriteLine($"Кол-во элементов > 0: {count}");
+
     }
 
-    Console.WriteLine(" ");
-    return;
+    GetMoreThanZeroInInput();
 
-}
+    break;
 
-double[] GetDiffAllFirstLastInArray (double [] array)
-{
-    double [] diffAllFirstLastInArray = new double[array.Length/2];
+case("2"):
 
-    for (int i = 0; i < diffAllFirstLastInArray.Length ; i++ )
+    double GetIntersecTwoLines (double b1, double k1,double b2, double k2 )
     {
-        int j = i+1;
-        double sum = array[i] * array[^j++];
-        diffAllFirstLastInArray[i] = sum;
+
+        double x = (b2 - b1)/(k1 - k2);
+        x = Math.Round(x, 3);
+
+        double y = k1*(b2-b1)/(k1-k2)+b1;
+        y = Math.Round(y, 3);
+
+        System.Console.WriteLine($"y= {y}");
+
+        return x;
+
     }
 
-    if (array.Length%2 != 0)
+    double[,] GetTwoLinesFromUser()
     {
-        Array.Resize(ref diffAllFirstLastInArray, diffAllFirstLastInArray.Length + 1);
-        diffAllFirstLastInArray[^1] = array[array.Length/2];
-    }
 
-    return diffAllFirstLastInArray;
+        System.Console.WriteLine("значения b1, k1, b2 и k2 задаются пользователем.");
 
-}
+        double[,] myArr = new double[2, 2];
 
-double[] GetRandomDoubleArray(int size, int startValue, int endValue)
-{
-    var array = new double[size];
-
-    for (int i = 0 ; i < array.Length ; i++)
-    {
-        //array[i] = new Random().NextDouble()*1000;
-        //Технически они вещественны,просто рандомный генератор выдаёт их целыми,как в описании заданиия
-        array[i] = new Random().Next(startValue,endValue+1);
-    }
-    return array;
-}
- 
-double GetDiffMinMaxInDoubleArray(double[] array)
-{
-    var result = array.Max() - array.Min();
-    Console.WriteLine("GetDiffMinMaxInDoubleArray");
-    return result;
-}
-
-int GetEven3DigitsInArray (double[] doubleArray)
-{
-    int counter = 0;
-    for ( int i = 0 ; i < doubleArray.Length ; i++ )
-    {
-        if (doubleArray[i]%2 == 0 && doubleArray[i]/100 > 1 && doubleArray[i]/100 < 10 && doubleArray[i] >= 0 )
-        // тут рудиментарная проверка на то что числа трёхзначные и положительные
+        for (int i = 0; i < 2; i++)
         {
-            counter++;
+            for (int j = 0; j < 2; j++)
+            {
+                System.Console.WriteLine("input");
+                myArr[i, j] = double.Parse(Console.ReadLine());
+            }
         }
-    }
-    Console.WriteLine("GetEven3DigitsInArray");
-    return counter;
-}
 
-double GetUnevenIndexSumInArray (double[] doubleArray)
-{
-    double sum = 0;
-    for ( int i = 0 ; i < doubleArray.Length ; i++ )
+        System.Console.WriteLine($"x = {GetIntersecTwoLines(myArr[0,0],myArr[0,1],myArr[1,0],myArr[1,1])}");
+
+        return myArr;
+
+    }
+
+    GetTwoLinesFromUser();
+
+    break;
+
+case("3"):
+
+    int a= 0 ;
+    int b = 1; 
+    int c= 1;
+    string z = String.Empty;
+
+    string  GetFibonacci (int n)
     {
-        if ( i % 2 == 0 )
+        Console.WriteLine(a);
+        if (n%1 == 0 && n%2 != 0 && n%3 != 0)
         {
-            sum += doubleArray[i];
+            return z;
         }
-    }
-    Console.WriteLine("GetUnevenIndexSumInArray");
-    return sum;
-}
-*/
-/*
-double[] doubleArray = GetRandomDoubleArray(5,100,999);
-oubleArray(doubleArray);
-
-Console.WriteLine(GetDiffMinMaxInDoubleArray(doubleArray));
-
-Console.WriteLine(GetEven3DigitsInArray(doubleArray));
-
-Console.WriteLine(GetUnevenIndexSumInArray(doubleArray));
-
-var diffAllFirstLastInArray= GetDiffAllFirstLastInArray(doubleArray);
-Console.WriteLine("diffAllFirstLastInArray");
-PrintDoubleArray(diffAllFirstLastInArray);
-*/
-
-int GetMoreThanZeroInInput (int m)
-{
-    //System.Console.WriteLine("колво чисел = ");
-    //int m = int.Parse(Console.ReadLine());
-    int[] mmm = new int[m];
-    for (int i = 0 ; i < m ; i++)
-    {
-        System.Console.WriteLine("Введите число : ");
-        mmm[i] = int.Parse(Console.ReadLine());
-    }
-    int counter = 0;
-    for (int i = 0 ; i < m ; i++)
-    {
-        if (mmm[i] > 0 )    {
-            counter++;
+        System.Console.WriteLine(b);
+        if (n%2 == 0)
+        {
+            return z;
         }
+        System.Console.WriteLine(c);
+        a = b + c;
+        b = a + c;
+        c = a + b; 
+        return z;
     }
-return counter;
-}
+    ///!!!Не используя рекурсию!!!
 
-//System.Console.WriteLine(GetMoreThanZeroInInput(5));
+    void GetFibonacciN (int n)
+    {
+        int j = n/3;
+        IEnumerable<int> strings = Enumerable.Repeat(1337, j);
+        // хотел реализовать это в без циклов и желательно в одну строку
+        // чтобы примерно как    repeat(что рипитить, сколько раз);
+        // но не знаю как,а от попыток найти референс начал подгорать бекэнд
+        foreach (int i in strings)
+            GetFibonacci(3) ;
+        
+        GetFibonacci(n);
+        //return;
+    }
 
-double GetIntersecTwoLines (double b1, double k1,double b2, double k2 )
-{
-double x = (b2 - b1)/(k1 - k2);
-double y = k1*(b2-b1)/(k1-k2)+b1;
-System.Console.WriteLine($"y= {y}");
-return x;
+    GetFibonacciN(8);
+    
+    break;
+
 }
-System.Console.WriteLine($"x = {GetIntersecTwoLines(2,5,4,9)}");
