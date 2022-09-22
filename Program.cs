@@ -1,116 +1,85 @@
-﻿using System.Linq;
-
-System.Console.WriteLine("1. Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.");
-System.Console.WriteLine("2. Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2;");
-System.Console.WriteLine("3. Задача 44*: Не используя рекурсию, выведите первые N(сейчас 15) чисел Фибоначчи.");
-
-string choise = System.Console.ReadLine();
-
-switch (choise)
+﻿
+double[,] Get2DimentionalRandomizedDoubleArrayFromInputIntMIntN()
 {
-case ("1"):
+    System.Console.WriteLine("Input rows number : ");
+    int n = Convert.ToInt32 (Console.ReadLine());
+    System.Console.WriteLine("Input columns number : ");
+    int m = Convert.ToInt32(Console.ReadLine());
 
-    void GetMoreThanZeroInInput ()
+    double[,] twoDimentionalRandomizedDoubleArray = new double[n, m];
+
+    Random random = new Random();
+    for (int i = 0; i < n; i++)
     {
-
-        Console.Write("Введите элементы(через пробел): ");
-        int[] arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-        int count = arr.Count(x => x > 0);
-
-        Console.WriteLine($"Кол-во элементов > 0: {count}");
-
-    }
-
-    GetMoreThanZeroInInput();
-
-    break;
-
-case("2"):
-
-    double GetIntersecTwoLines (double b1, double k1,double b2, double k2 )
-    {
-
-        double x = (b2 - b1)/(k1 - k2);
-        x = Math.Round(x, 3);
-
-        double y = k1*(b2-b1)/(k1-k2)+b1;
-        y = Math.Round(y, 3);
-
-        System.Console.WriteLine($"y= {y}");
-
-        return x;
-
-    }
-
-    double[,] GetTwoLinesFromUser()
-    {
-
-        System.Console.WriteLine("значения b1, k1, b2 и k2 задаются пользователем.");
-
-        double[,] myArr = new double[2, 2];
-
-        for (int i = 0; i < 2; i++)
+        for (int j = 0; j < m; j++)
         {
-            for (int j = 0; j < 2; j++)
-            {
-                System.Console.WriteLine("input");
-                myArr[i, j] = double.Parse(Console.ReadLine());
-            }
+            twoDimentionalRandomizedDoubleArray[i, j] = random.NextDouble() * 100;
+            Console.Write("{0,6:F2}", twoDimentionalRandomizedDoubleArray[i, j]);
         }
-
-        System.Console.WriteLine($"x = {GetIntersecTwoLines(myArr[0,0],myArr[0,1],myArr[1,0],myArr[1,1])}");
-
-        return myArr;
-
+        Console.WriteLine();
     }
 
-    GetTwoLinesFromUser();
-
-    break;
-
-case("3"):
-
-    int a= 0 ;
-    int b = 1; 
-    int c= 1;
-    string z = String.Empty;
-
-    string  GetFibonacci (int n)
-    {
-        Console.WriteLine(a);
-        if (n%1 == 0 && n%2 != 0 && n%3 != 0)
-        {
-            return z;
-        }
-        System.Console.WriteLine(b);
-        if (n%2 == 0)
-        {
-            return z;
-        }
-        System.Console.WriteLine(c);
-        a = b + c;
-        b = a + c;
-        c = a + b; 
-        return z;
-    }
-    ///!!!Не используя рекурсию!!!
-
-    void GetFibonacciN (int n)
-    {
-        int j = n/3;
-        IEnumerable<int> strings = Enumerable.Repeat(1337, j);
-        // хотел реализовать это в без циклов и желательно в одну строку
-        // чтобы примерно как    repeat(что рипитить, сколько раз);
-        // но не знаю как,а от попыток найти референс начал подгорать бекэнд
-        foreach (int i in strings)
-            GetFibonacci(3) ;
-        
-        GetFibonacci(n);
-        //return;
-    }
-
-    GetFibonacciN(8);
-    
-    break;
+    return twoDimentionalRandomizedDoubleArray ;
 
 }
+
+void ReturnElementOrNoneFrom2DimentionalDoubleArrayByInputIntMIntN(double[,] twoDimentionalArray )
+{
+    System.Console.WriteLine("!!!отсчёт позиции начинается с ноля!!!");
+    System.Console.WriteLine("Input row of element  : ");
+    int n = Convert.ToInt32 (Console.ReadLine());
+    System.Console.WriteLine("Input column of element : ");
+    int m = Convert.ToInt32(Console.ReadLine());
+
+    try
+    {
+        double result = twoDimentionalArray[n,m];
+        System.Console.WriteLine(result);
+    }
+    catch
+    {
+        System.Console.WriteLine("такого числа в массиве нет");
+    }
+}
+
+double[,] Get2DimentionalRandomizedIntArrayFromInputIntMIntN()
+{
+    System.Console.WriteLine("Input rows number : ");
+    int n = Convert.ToInt32 (Console.ReadLine());
+    System.Console.WriteLine("Input columns number : ");
+    int m = Convert.ToInt32(Console.ReadLine());
+
+    double[,] twoDimentionalRandomizedintArray = new double[n, m];
+
+    Random random = new Random();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            twoDimentionalRandomizedintArray[i, j] = random.Next(100);
+            // числа целые,как по тз,но тип данных нет,для того чтобы дальше не делать перевод в дабл ,для правильных расчётов 
+            Console.Write(" " + twoDimentionalRandomizedintArray[i, j]);
+        }
+        Console.WriteLine();
+    }
+    for (int j = 0; j < m; j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < n ; i++ )
+            {
+            //System.Console.WriteLine( $"start sum  {sum} ");    
+            sum = sum + twoDimentionalRandomizedintArray[i, j];
+            //System.Console.WriteLine($"mid sum {sum}");
+            }
+        //System.Console.WriteLine($"fin sum {sum}");
+        //System.Console.WriteLine(m);
+        System.Console.WriteLine(sum/m);
+    }
+    return twoDimentionalRandomizedintArray ;
+}
+
+double[,] twoDimentionalRandomizedDoubleArray = Get2DimentionalRandomizedDoubleArrayFromInputIntMIntN();
+
+ReturnElementOrNoneFrom2DimentionalDoubleArrayByInputIntMIntN(twoDimentionalRandomizedDoubleArray);
+
+Get2DimentionalRandomizedIntArrayFromInputIntMIntN();
